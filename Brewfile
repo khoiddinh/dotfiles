@@ -1,17 +1,21 @@
-tap "homebrew/cask-fonts"
-
 brew "git"
+brew "pyenv"
+
+brew "fzf"
+brew "fastfetch"
+brew "btop"
+brew "lazygit"
 brew "neovim"
+brew "starship"
+
+# LunarVim prereqs
 brew "node"
 brew "python"
 brew "ripgrep"
-brew "starship"
-brew "fzf"
-brew "lazygit"
-brew "fastfetch"
-brew "btop"
-brew "pyenv"
+brew "rust"
+brew "gnu-sed"
 
 cask "ghostty"
 cask "font-jetbrains-mono-nerd-font"
+
 

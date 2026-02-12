@@ -1,5 +1,8 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+# set custom command timeout for node loading issues
+command_timeout = 2000
+
 [aws]
 symbol = " "
 
