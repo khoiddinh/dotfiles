@@ -12,10 +12,6 @@ This repository installs and configures:
 - Core CLI tooling (fzf, lazygit, btop, fastfetch)
 - JetBrains Mono Nerd Font
 
-The goal:
-
-Clone → run install.sh → identical environment.
-
 ---
 
 ## Setup
