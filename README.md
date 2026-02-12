@@ -55,7 +55,7 @@ Ghostty with:
 ---
 
 ## Structure
-
+```
 dotfiles/
   install.sh
   Brewfile
@@ -63,8 +63,9 @@ dotfiles/
   ghostty/
   starship/
   lvim/
+```
 
-All configs are symlinked from this repository.
+All configs are **automatically symlinked** from this repository.
 
 Re-running install.sh is safe.
 
