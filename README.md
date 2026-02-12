@@ -20,11 +20,11 @@ Clone → run install.sh → identical environment.
 
 ## Setup
 
-On a new machine:
+First, clone the repo:
 
 ```
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles \
-cd ~/dotfiles \
+git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
+cd ~/dotfiles
 ./install.sh
 ```
 
