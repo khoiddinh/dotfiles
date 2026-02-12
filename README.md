@@ -77,14 +77,14 @@ Local machine-only overrides go in ~/.zsh_custom
 SSH keys are not managed here  
 Fonts are installed via Homebrew
 
-## Extras
+# Extras
 
-# Ghosty Quick Terminal
+## Ghosty Quick Terminal
 The keybind (cmd + \) is already included in the ghostty config files on installation. 
 However, to make this work on MacOS you need to allow additional permissions. As of writing (Feb 12, 2026), these are found in System Settings > Privacy and Security > Accessibility.
 <img width="411" height="165" alt="image" src="https://github.com/user-attachments/assets/73897969-77bb-4933-8f9b-ebe00e2b5201" />
 
-# VS Code
+## VS Code
 This is not included in the dotfiles. However, I use Vira theme (Vira Teal High Contrast)
 To take advantage of nerd fonds, do:
 ```
