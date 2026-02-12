@@ -22,9 +22,11 @@ Clone → run install.sh → identical environment.
 
 On a new machine:
 
+```
 git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles \
 cd ~/dotfiles \
-./install.sh \
+./install.sh
+```
 
 Restart your terminal after installation.
 
