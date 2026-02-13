@@ -11,6 +11,7 @@ This repository installs and configures:
 - LunarVim
 - Core CLI tooling (fzf, lazygit, btop, fastfetch)
 - JetBrains Mono Nerd Font
+- Optional Git configuration (aliases + sane defaults)
 
 ---
 
@@ -25,6 +26,28 @@ cd ~/dotfiles
 ```
 
 Restart your terminal after installation.
+
+---
+
+## Optional: Git Setup
+
+Git configuration is opt-in.
+
+If you want this repo to manage your global git config (including aliases and pull defaults), run:
+
+```
+./install.sh --git --git-name "Your Name" --git-email "you@example.com"
+```
+
+This will:
+
+- Generate `git/gitconfig` from a template
+- Overwrite it on re-run (safe to fix mistakes)
+- Symlink it to `~/.gitconfig`
+
+Re-running with different name/email will update your identity.
+
+If `--git` is not passed, your existing `~/.gitconfig` is untouched.
 
 ---
 
@@ -52,6 +75,91 @@ Ghostty with:
 ### Python
 - pyenv
 
+### Git (if enabled)
+
+#### Defaults
+
+- `pull.rebase = true`  
+  Makes `git pull` use rebase instead of merge.  
+  Keeps history linear and avoids unnecessary merge commits.
+
+- `rebase.autoStash = true`  
+  Automatically stashes uncommitted changes before rebasing and reapplies them afterward.  
+  Prevents pull failures due to a dirty working directory.
+
+- `push.default = current`  
+  Pushes the current branch to its upstream counterpart only.  
+  Safer than older default behaviors.
+
+- `merge.conflictstyle = zdiff3`  
+  Shows base/ours/theirs during merge conflicts.  
+  Makes resolving conflicts much clearer.
+
+- `credential.helper = osxkeychain`  
+  Uses macOS keychain for storing Git credentials securely.
+
+---
+
+#### Aliases
+
+##### Navigation / Status
+
+- `git st`  
+  Short for `git status -sb`  
+  Shows concise branch + status information.
+
+- `git br`  
+  Short for `git branch`
+
+- `git co`  
+  Short for `git checkout`
+
+- `git sw`  
+  Short for `git switch`
+
+---
+
+##### Logs
+
+- `git lg`  
+  Compact visual commit graph with timestamps.  
+  Good daily driver log view.
+
+- `git lga`  
+  Full repository graph across all branches.  
+  Useful for understanding overall history.
+
+- `git lgb`  
+  Detailed branch-focused graph showing:
+  - Commit hash
+  - Branch decorations
+  - Relative time
+  - Author name
+
+  Good for reviewing feature branch history before merging.
+
+---
+
+##### Commit Helpers
+
+- `git amend`  
+  Amends the previous commit without editing the message.  
+  Useful for quick fixes.
+
+- `git undo`  
+  Equivalent to `git reset --soft HEAD~1`  
+  Removes the last commit but keeps changes staged.
+
+---
+
+##### File Inspection
+
+- `git changed`  
+  Shows modified (unstaged) file names only.
+
+- `git changedstaged`  
+  Shows staged file names only.
+
 ---
 
 ## Structure
@@ -63,9 +171,10 @@ dotfiles/
   ghostty/
   starship/
   lvim/
+  git/
 ```
 
-All configs are **automatically symlinked** from this repository.
+All configs are automatically symlinked from this repository.
 
 Re-running install.sh is safe.
 
@@ -75,20 +184,26 @@ Re-running install.sh is safe.
 
 Local machine-only overrides go in ~/.zsh_custom  
 SSH keys are not managed here  
-Fonts are installed via Homebrew
+Fonts are installed via Homebrew  
+
+---
 
 # Extras
 
-## Ghosty Quick Terminal
-The keybind (cmd + \) is already included in the ghostty config files on installation. 
-However, to make this work on MacOS you need to allow additional permissions. As of writing (Feb 12, 2026), these are found in System Settings > Privacy and Security > Accessibility.
-<img width="411" height="165" alt="image" src="https://github.com/user-attachments/assets/73897969-77bb-4933-8f9b-ebe00e2b5201" />
+## Ghostty Quick Terminal
+The keybind (cmd + \) is already included in the ghostty config files on installation.  
+However, to make this work on MacOS you need to allow additional permissions. As of writing (Feb 12, 2026), these are found in:
+
+System Settings > Privacy and Security > Accessibility
 
 ## VS Code
-This is not included in the dotfiles. However, I use Vira theme (Vira Teal High Contrast)
-To take advantage of nerd fonds, do:
+This is not included in the dotfiles. However, I use Vira theme (Vira Teal High Contrast).  
+To take advantage of nerd fonts, do:
+
 ```
 brew install --cask font-hack-nerd-font
 ```
-Then, go to the terminal settings under fonts and replace with: Hack Nerd Font, Menlo, Monaco, Courier New, monospace
 
+Then go to the terminal settings under fonts and replace with:
+
+Hack Nerd Font, Menlo, Monaco, Courier New, monospace
