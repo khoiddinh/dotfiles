@@ -31,6 +31,8 @@ chmod +x install.sh
 
 Restart your terminal after installation.
 
+**Re-running install.sh is safe (if you want to change any flags or configs).**
+
 ---
 
 ## Optional: Git Setup
@@ -179,8 +181,6 @@ dotfiles/
 ```
 
 All configs are automatically symlinked from this repository.
-
-Re-running install.sh is safe.
 
 ---
 
