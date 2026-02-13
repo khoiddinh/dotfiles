@@ -24,6 +24,10 @@ git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
+To add execute permissions to the installer, you may need to run:
+```
+chmod +x install.sh
+```
 
 Restart your terminal after installation.
 
