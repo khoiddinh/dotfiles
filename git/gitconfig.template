@@ -1,0 +1,46 @@
+[user]
+  name = __GIT_NAME__
+  email = __GIT_EMAIL__
+
+[core]
+  editor = nvim
+  filemode = false
+  pager = less -FRX
+  excludesfile = ~/.gitignore_global
+
+[pull]
+  rebase = true
+
+[rebase]
+  autoStash = true
+
+[push]
+  default = current
+
+[credential]
+  helper = osxkeychain
+
+[color]
+  ui = auto
+
+[merge]
+  conflictstyle = zdiff3
+
+[diff]
+  colorMoved = default
+
+[alias]
+  st = status -sb
+  br = branch
+  co = checkout
+  sw = switch
+  amend = commit --amend --no-edit
+
+  lg = log --graph --decorate --pretty=format:'%C(auto)%h%d %s %C(black)%C(bold)%cr' --abbrev-commit
+  lga = log --graph --decorate --oneline --all
+  lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
+
+  undo = reset --soft HEAD~1
+  changed = diff --name-only
+  changedstaged = diff --name-only --cached
+
