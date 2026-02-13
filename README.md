@@ -11,7 +11,7 @@ This repository installs and configures:
 - LunarVim
 - Core CLI tooling (fzf, lazygit, btop, fastfetch)
 - JetBrains Mono Nerd Font
-- Optional Git configuration (aliases + sane defaults)
+- Optional Git configuration (aliases + defaults)
 
 ---
 
