@@ -1,8 +1,5 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# set custom command timeout for node loading issues
-command_timeout = 2000
-
 [aws]
 symbol = " "
 
@@ -56,6 +53,7 @@ symbol = " "
 
 [gcloud]
 symbol = " "
+detect_env_vars = ["GOOGLE_CLOUD_PROJECT", "CLOUDSDK_CORE_PROJECT"]
 
 [git_branch]
 symbol = " "
@@ -110,6 +108,9 @@ symbol = " "
 
 [nodejs]
 symbol = " "
+detect_files = ["package.json"]
+detect_folders = ["node_modules"]
+detect_extensions = []
 
 [ocaml]
 symbol = " "
