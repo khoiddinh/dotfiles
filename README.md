@@ -14,10 +14,10 @@ Welcome to my personal macOS development environment!
 ![Prompt](screenshots/prompt.png)
 *Starship prompt showing git branch, language versions, and directory context*
 
-![Editor](screenshots/editor.png)
+![Editor](screenshots/lvim.png)
 *LunarVim with syntax highlighting and file explorer*
 
-![Autosuggestions (fzf-tab)](screenshots/fzf-tab.png)
+![Autosuggestions (fzf-tab)](screenshots/autosuggestions.png)
 *fzf-tab providing fuzzy autosuggestions during tab completion*
 
 ![lazygit](screenshots/lazygit.png)
