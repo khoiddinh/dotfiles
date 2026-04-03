@@ -158,7 +158,7 @@ Restart your terminal after installation.
 
 ## Optional: Git Setup
 
-Git configuration is opt-in.
+Git configuration is opt-in. Sets up rebase-by-default pulls, clearer merge conflicts, and common aliases (status, branch, checkout, log graphs, amend, undo) so you don't have to configure them yourself every time.
 
 If you want this repo to manage your global git config (including aliases and pull defaults), run:
 
