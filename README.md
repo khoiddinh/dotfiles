@@ -122,7 +122,8 @@ To add execute permissions to the installer, you may need to run:
 chmod +x install.sh
 ```
 
-Restart your terminal after installation.
+Restart your terminal after installation. 
+**Note that you should use terminal from the Ghostty App for all the features to take effect.**
 
 **Re-running install.sh is safe (if you want to change any flags or configs).**
 
