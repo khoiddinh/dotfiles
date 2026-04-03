@@ -44,9 +44,6 @@ Welcome to my personal macOS development environment!
 ### Python
 - pyenv for version management — install and switch between multiple Python versions without touching the system Python
 
-### CLI Tools
-- fzf, lazygit, btop, fastfetch
-
 <details>
 <summary><strong>pyenv Usage Guide</strong></summary>
 
@@ -98,6 +95,9 @@ pyenv uninstall 3.10.4
 ```
 
 </details>
+
+### CLI Tools
+- fzf, lazygit, btop, fastfetch
 
 ### Git (opt-in)
 - Rebase-based pull, auto-stash, zdiff3 conflict style
