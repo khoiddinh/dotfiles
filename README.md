@@ -126,6 +126,7 @@ pyenv uninstall 3.10.4
 - fzf, lazygit, btop, fastfetch
 
 ### Git (opt-in)
+Sets up rebase-by-default pulls, clearer merge conflicts, and common aliases (status, branch, checkout, log graphs, amend, undo) so you don't have to configure them yourself every time.
 - Rebase-based pull, auto-stash, zdiff3 conflict style
 - Curated aliases for status, logs, and commit helpers
 - macOS keychain credential storage
