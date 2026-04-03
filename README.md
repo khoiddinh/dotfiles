@@ -178,6 +178,24 @@ If `--git` is not passed, your existing `~/.gitconfig` is untouched.
 
 ---
 
+## Updating
+
+To pull the latest changes and re-apply them:
+
+```
+cd ~/dotfiles
+git pull
+./install.sh
+```
+
+If you're using the git config, re-run with your flags:
+
+```
+./install.sh --git --git-name "Your Name" --git-email "you@example.com"
+```
+
+---
+
 <details>
 <summary><strong>Git Configuration Details</strong></summary>
 
