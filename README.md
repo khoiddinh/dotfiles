@@ -31,7 +31,7 @@ Welcome to my personal macOS development environment!
     <td align="center" width="50%">
       <img src="screenshots/autosuggestions.png" alt="Autosuggestions (fzf-tab)"/>
       <br/>
-      <em>Downdown menu autosuggestions during tab completion</em>
+      <em>Dropdown autosuggestions during tab completion</em>
     </td>
     <td align="center" width="50%">
       <img src="screenshots/lazygit.png" alt="lazygit"/>
