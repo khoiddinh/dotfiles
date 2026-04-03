@@ -2,16 +2,47 @@
 
 Welcome to my personal macOS development environment!
 
-This repository installs and configures:
+---
 
-- Ghostty (Catppuccin Mocha + custom UI)
-- Oh My Zsh + plugins
-- Starship prompt
-- pyenv
-- LunarVim
-- Core CLI tooling (fzf, lazygit, btop, fastfetch)
+## Screenshots
+
+<!-- Replace these with actual screenshots of your setup -->
+
+| Terminal | Prompt | Editor |
+|----------|--------|--------|
+| ![Terminal](screenshots/terminal.png) | ![Prompt](screenshots/prompt.png) | ![Editor](screenshots/editor.png) |
+
+<!-- To add screenshots: create a screenshots/ folder, drop in your images, and update the paths above -->
+
+---
+
+## What's Included
+
+### Terminal — Ghostty
+- Catppuccin Mocha theme
 - JetBrains Mono Nerd Font
-- Optional Git configuration (aliases + defaults)
+- Window blur + opacity
+- Quick Terminal keybind (`Cmd + \`)
+
+### Shell — Zsh
+- Oh My Zsh with autosuggestions, syntax highlighting, and fzf-tab
+- Starship prompt
+- fastfetch on startup
+
+### Editor — LunarVim
+- Neovim + LunarVim (release 1.4)
+- ripgrep, node, python, rust toolchains
+
+### Python
+- pyenv for version management
+
+### CLI Tools
+- fzf, lazygit, btop, fastfetch
+
+### Git (opt-in)
+- Rebase-based pull, auto-stash, zdiff3 conflict style
+- Curated aliases for status, logs, and commit helpers
+- macOS keychain credential storage
 
 ---
 
@@ -24,7 +55,9 @@ git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
+
 To add execute permissions to the installer, you may need to run:
+
 ```
 chmod +x install.sh
 ```
@@ -57,33 +90,10 @@ If `--git` is not passed, your existing `~/.gitconfig` is untouched.
 
 ---
 
-## What gets configured
+<details>
+<summary><strong>Git Configuration Details</strong></summary>
 
-### Terminal
-Ghostty with:
-- Catppuccin Mocha
-- Nerd Font
-- Blur + opacity
-
-### Shell
-- Oh My Zsh
-- zsh-autosuggestions
-- zsh-syntax-highlighting
-- fzf-tab
-- Starship prompt
-- fastfetch on startup
-
-### Editor
-- Neovim
-- LunarVim (release 1.4)
-- ripgrep / node / python / rust
-
-### Python
-- pyenv
-
-### Git (if enabled)
-
-#### Defaults
+### Defaults
 
 - `pull.rebase = true`  
   Makes `git pull` use rebase instead of merge.  
@@ -106,9 +116,9 @@ Ghostty with:
 
 ---
 
-#### Aliases
+### Aliases
 
-##### Navigation / Status
+#### Navigation / Status
 
 - `git st`  
   Short for `git status -sb`  
@@ -125,7 +135,7 @@ Ghostty with:
 
 ---
 
-##### Logs
+#### Logs
 
 - `git lg`  
   Compact visual commit graph with timestamps.  
@@ -146,7 +156,7 @@ Ghostty with:
 
 ---
 
-##### Commit Helpers
+#### Commit Helpers
 
 - `git amend`  
   Amends the previous commit without editing the message.  
@@ -158,7 +168,7 @@ Ghostty with:
 
 ---
 
-##### File Inspection
+#### File Inspection
 
 - `git changed`  
   Shows modified (unstaged) file names only.
@@ -166,9 +176,12 @@ Ghostty with:
 - `git changedstaged`  
   Shows staged file names only.
 
+</details>
+
 ---
 
 ## Structure
+
 ```
 dotfiles/
   install.sh
@@ -192,15 +205,15 @@ Fonts are installed via Homebrew
 
 ---
 
-# Extras
+## Extras
 
-## Ghostty Quick Terminal
+### Ghostty Quick Terminal
 The keybind (cmd + \) is already included in the ghostty config files on installation.  
 However, to make this work on MacOS you need to allow additional permissions. As of writing (Feb 12, 2026), these are found in:
 
 System Settings > Privacy and Security > Accessibility
 
-## VS Code
+### VS Code
 This is not included in the dotfiles. However, I use Vira theme (Vira Teal High Contrast).  
 To take advantage of nerd fonts, do:
 
