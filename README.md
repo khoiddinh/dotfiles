@@ -16,32 +16,32 @@ Welcome to my personal macOS development environment!
 
 <table>
   <tr>
-    <td align="center">
-      <img src="screenshots/prompt.png" alt="Prompt" width="400"/>
+    <td align="center" width="50%">
+      <img src="screenshots/prompt.png" alt="Prompt"/>
       <br/>
       <em>Starship prompt with git branch and language context</em>
     </td>
-    <td align="center">
-      <img src="screenshots/lvim.png" alt="Editor" width="400"/>
+    <td align="center" width="50%">
+      <img src="screenshots/lvim.png" alt="Editor"/>
       <br/>
       <em>LunarVim with syntax highlighting and file explorer</em>
     </td>
   </tr>
   <tr>
-    <td align="center">
-      <img src="screenshots/autosuggestions.png" alt="Autosuggestions (fzf-tab)" width="400"/>
+    <td align="center" width="50%">
+      <img src="screenshots/autosuggestions.png" alt="Autosuggestions (fzf-tab)"/>
       <br/>
       <em>fzf-tab providing fuzzy autosuggestions during tab completion</em>
     </td>
-    <td align="center">
-      <img src="screenshots/lazygit.png" alt="lazygit" width="400"/>
+    <td align="center" width="50%">
+      <img src="screenshots/lazygit.png" alt="lazygit"/>
       <br/>
       <em>lazygit terminal UI for commits, branches, and diffs</em>
     </td>
   </tr>
   <tr>
     <td align="center" colspan="2">
-      <img src="screenshots/btop.png" alt="btop" width="600"/>
+      <img src="screenshots/btop.png" alt="btop" width="70%"/>
       <br/>
       <em>btop resource monitor showing CPU, memory, network, and processes</em>
     </td>
