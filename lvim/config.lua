@@ -23,6 +23,11 @@ vim.keymap.set("n", "<D-S-z>", "<C-r>")
 -- Use system clipboard
 vim.opt.clipboard = "unnamedplus"
 
+-- Disable treesitter provider in vim-illuminate to avoid locals.lua error
+lvim.builtin.illuminate.options = {
+  providers = { "lsp", "regex" },
+}
+
 lvim.colorscheme = "catppuccin-mocha"
 lvim.transparent_window = true
 
