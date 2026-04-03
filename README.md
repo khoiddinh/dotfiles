@@ -6,21 +6,25 @@ Welcome to my personal macOS development environment!
 
 ## Screenshots
 
-<!-- Replace these with actual screenshots of your setup -->
+<!-- Replace these with actual screenshots — create a screenshots/ folder and drop in your images -->
 
-| Terminal | Prompt | Editor |
-|----------|--------|--------|
-| ![Terminal](screenshots/terminal.png) | ![Prompt](screenshots/prompt.png) | ![Editor](screenshots/editor.png) |
+![Terminal](screenshots/terminal.png)
+*Ghostty terminal with Catppuccin Mocha theme, blur, and JetBrains Mono Nerd Font*
 
-| Autosuggestions | Syntax Highlighting | fzf-tab |
-|-----------------|----------------------|---------|
-| ![Autosuggestions](screenshots/autosuggestions.png) | ![Syntax Highlighting](screenshots/syntax-highlighting.png) | ![fzf-tab](screenshots/fzf-tab.png) |
+![Prompt](screenshots/prompt.png)
+*Starship prompt showing git branch, language versions, and directory context*
 
-| fastfetch | lazygit | btop |
-|-----------|---------|------|
-| ![fastfetch](screenshots/fastfetch.png) | ![lazygit](screenshots/lazygit.png) | ![btop](screenshots/btop.png) |
+![Editor](screenshots/editor.png)
+*LunarVim with syntax highlighting and file explorer*
 
-<!-- To add screenshots: create a screenshots/ folder, drop in your images, and update the paths above -->
+![Autosuggestions (fzf-tab)](screenshots/fzf-tab.png)
+*fzf-tab providing fuzzy autosuggestions during tab completion*
+
+![lazygit](screenshots/lazygit.png)
+*lazygit terminal UI for managing commits, branches, and diffs*
+
+![btop](screenshots/btop.png)
+*btop resource monitor showing CPU, memory, network, and processes*
 
 ---
 
