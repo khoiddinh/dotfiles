@@ -296,7 +296,7 @@ Fonts are installed via Homebrew
 ## Extras
 
 ### Ghostty Quick Terminal
-The keybind (cmd + \) is already included in the ghostty config files on installation.  
+The keybind (cmd + \\) is already included in the ghostty config files on installation.  
 However, to make this work on MacOS you need to allow additional permissions. As of writing (Feb 12, 2026), these are found in:
 
 System Settings > Privacy and Security > Accessibility
