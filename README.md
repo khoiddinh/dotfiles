@@ -12,6 +12,14 @@ Welcome to my personal macOS development environment!
 |----------|--------|--------|
 | ![Terminal](screenshots/terminal.png) | ![Prompt](screenshots/prompt.png) | ![Editor](screenshots/editor.png) |
 
+| Autosuggestions | Syntax Highlighting | fzf-tab |
+|-----------------|----------------------|---------|
+| ![Autosuggestions](screenshots/autosuggestions.png) | ![Syntax Highlighting](screenshots/syntax-highlighting.png) | ![fzf-tab](screenshots/fzf-tab.png) |
+
+| fastfetch | lazygit | btop |
+|-----------|---------|------|
+| ![fastfetch](screenshots/fastfetch.png) | ![lazygit](screenshots/lazygit.png) | ![btop](screenshots/btop.png) |
+
 <!-- To add screenshots: create a screenshots/ folder, drop in your images, and update the paths above -->
 
 ---
@@ -34,10 +42,62 @@ Welcome to my personal macOS development environment!
 - ripgrep, node, python, rust toolchains
 
 ### Python
-- pyenv for version management
+- pyenv for version management — install and switch between multiple Python versions without touching the system Python
 
 ### CLI Tools
 - fzf, lazygit, btop, fastfetch
+
+<details>
+<summary><strong>pyenv Usage Guide</strong></summary>
+
+#### List available Python versions
+
+```
+pyenv install --list
+```
+
+#### Install a specific version
+
+```
+pyenv install 3.12.2
+```
+
+#### Set a global default version
+
+```
+pyenv global 3.12.2
+```
+
+This sets the Python version used across your entire system (outside of any project-specific overrides).
+
+#### Set a project-local version
+
+```
+cd ~/my-project
+pyenv local 3.11.8
+```
+
+This creates a `.python-version` file in the project directory. Whenever you `cd` into that directory, pyenv automatically switches to that version.
+
+#### Check which version is active
+
+```
+pyenv version
+```
+
+#### List all installed versions
+
+```
+pyenv versions
+```
+
+#### Uninstall a version
+
+```
+pyenv uninstall 3.10.4
+```
+
+</details>
 
 ### Git (opt-in)
 - Rebase-based pull, auto-stash, zdiff3 conflict style
