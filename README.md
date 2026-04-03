@@ -1,6 +1,6 @@
 # dotfiles
 
-Welcome to my personal macOS development environment!
+A complete macOS dev environment with auto-installer.
 
 ---
 
