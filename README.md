@@ -1,17 +1,135 @@
 # dotfiles
 
-Welcome to my personal macOS development environment!
+A complete macOS dev environment with auto-installer.
 
-This repository installs and configures:
+---
 
-- Ghostty (Catppuccin Mocha + custom UI)
-- Oh My Zsh + plugins
-- Starship prompt
-- pyenv
-- LunarVim
-- Core CLI tooling (fzf, lazygit, btop, fastfetch)
+## Screenshots
+
+<!-- Replace these with actual screenshots — create a screenshots/ folder and drop in your images -->
+
+<p align="center">
+  <img src="screenshots/terminal.png" alt="Terminal" width="800"/>
+  <br/>
+  <em>Ghostty terminal with Catppuccin Mocha theme, blur, and JetBrains Mono Nerd Font</em>
+</p>
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="screenshots/prompt.png" alt="Prompt"/>
+      <br/>
+      <em>Fancy prompt with git branch and language context</em>
+    </td>
+    <td align="center" width="50%">
+      <img src="screenshots/lvim.png" alt="Editor"/>
+      <br/>
+      <em>LunarVim with syntax highlighting and file explorer</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="screenshots/autosuggestions.png" alt="Autosuggestions (fzf-tab)"/>
+      <br/>
+      <em>Dropdown autosuggestions during tab completion</em>
+    </td>
+    <td align="center" width="50%">
+      <img src="screenshots/lazygit.png" alt="lazygit"/>
+      <br/>
+      <em>lazygit terminal UI for commits, branches, and diffs</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <img src="screenshots/btop.png" alt="btop" width="70%"/>
+      <br/>
+      <em>btop resource monitor showing CPU, memory, network, and processes</em>
+    </td>
+  </tr>
+</table>
+
+---
+
+## What's Included
+
+### Terminal — Ghostty
+- Catppuccin Mocha theme
 - JetBrains Mono Nerd Font
-- Optional Git configuration (aliases + defaults)
+- Window blur + opacity
+- Quick Terminal keybind (`Cmd + \`)
+
+### Shell — Zsh
+- Oh My Zsh with autosuggestions, syntax highlighting, and fzf-tab
+- Starship prompt
+- fastfetch on startup
+
+### Editor — LunarVim
+- Neovim + LunarVim (release 1.4)
+- ripgrep, node, python, rust toolchains
+
+### Python
+- pyenv for version management — install and switch between multiple Python versions without touching the system Python
+
+<details>
+<summary><strong>pyenv Usage Guide</strong></summary>
+
+#### List available Python versions
+
+```
+pyenv install --list
+```
+
+#### Install a specific version
+
+```
+pyenv install 3.12.2
+```
+
+#### Set a global default version
+
+```
+pyenv global 3.12.2
+```
+
+This sets the Python version used across your entire system (outside of any project-specific overrides).
+
+#### Set a project-local version
+
+```
+cd ~/my-project
+pyenv local 3.11.8
+```
+
+This creates a `.python-version` file in the project directory. Whenever you `cd` into that directory, pyenv automatically switches to that version.
+
+#### Check which version is active
+
+```
+pyenv version
+```
+
+#### List all installed versions
+
+```
+pyenv versions
+```
+
+#### Uninstall a version
+
+```
+pyenv uninstall 3.10.4
+```
+
+</details>
+
+### CLI Tools
+- fzf, lazygit, btop, fastfetch
+
+### Git (opt-in)
+Sets up rebase-by-default pulls, clearer merge conflicts, and common aliases (status, branch, checkout, log graphs, amend, undo) so you don't have to configure them yourself every time.
+- Rebase-based pull, auto-stash, zdiff3 conflict style
+- Curated aliases for status, logs, and commit helpers
+- macOS keychain credential storage
 
 ---
 
@@ -24,12 +142,15 @@ git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
+
 To add execute permissions to the installer, you may need to run:
+
 ```
 chmod +x install.sh
 ```
 
-Restart your terminal after installation.
+Restart your terminal after installation. 
+**Note that you should use terminal from the Ghostty App for all the features to take effect.**
 
 **Re-running install.sh is safe (if you want to change any flags or configs).**
 
@@ -37,7 +158,7 @@ Restart your terminal after installation.
 
 ## Optional: Git Setup
 
-Git configuration is opt-in.
+Git configuration is opt-in. Sets up rebase-by-default pulls, clearer merge conflicts, and common aliases (status, branch, checkout, log graphs, amend, undo) so you don't have to configure them yourself every time.
 
 If you want this repo to manage your global git config (including aliases and pull defaults), run:
 
@@ -57,33 +178,10 @@ If `--git` is not passed, your existing `~/.gitconfig` is untouched.
 
 ---
 
-## What gets configured
+<details>
+<summary><strong>Git Configuration Details</strong></summary>
 
-### Terminal
-Ghostty with:
-- Catppuccin Mocha
-- Nerd Font
-- Blur + opacity
-
-### Shell
-- Oh My Zsh
-- zsh-autosuggestions
-- zsh-syntax-highlighting
-- fzf-tab
-- Starship prompt
-- fastfetch on startup
-
-### Editor
-- Neovim
-- LunarVim (release 1.4)
-- ripgrep / node / python / rust
-
-### Python
-- pyenv
-
-### Git (if enabled)
-
-#### Defaults
+### Defaults
 
 - `pull.rebase = true`  
   Makes `git pull` use rebase instead of merge.  
@@ -106,9 +204,9 @@ Ghostty with:
 
 ---
 
-#### Aliases
+### Aliases
 
-##### Navigation / Status
+#### Navigation / Status
 
 - `git st`  
   Short for `git status -sb`  
@@ -125,7 +223,7 @@ Ghostty with:
 
 ---
 
-##### Logs
+#### Logs
 
 - `git lg`  
   Compact visual commit graph with timestamps.  
@@ -146,7 +244,7 @@ Ghostty with:
 
 ---
 
-##### Commit Helpers
+#### Commit Helpers
 
 - `git amend`  
   Amends the previous commit without editing the message.  
@@ -158,7 +256,7 @@ Ghostty with:
 
 ---
 
-##### File Inspection
+#### File Inspection
 
 - `git changed`  
   Shows modified (unstaged) file names only.
@@ -166,9 +264,12 @@ Ghostty with:
 - `git changedstaged`  
   Shows staged file names only.
 
+</details>
+
 ---
 
 ## Structure
+
 ```
 dotfiles/
   install.sh
@@ -192,15 +293,15 @@ Fonts are installed via Homebrew
 
 ---
 
-# Extras
+## Extras
 
-## Ghostty Quick Terminal
+### Ghostty Quick Terminal
 The keybind (cmd + \) is already included in the ghostty config files on installation.  
 However, to make this work on MacOS you need to allow additional permissions. As of writing (Feb 12, 2026), these are found in:
 
 System Settings > Privacy and Security > Accessibility
 
-## VS Code
+### VS Code
 This is not included in the dotfiles. However, I use Vira theme (Vira Teal High Contrast).  
 To take advantage of nerd fonts, do:
 
