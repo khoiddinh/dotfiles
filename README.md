@@ -19,7 +19,7 @@ Welcome to my personal macOS development environment!
     <td align="center" width="50%">
       <img src="screenshots/prompt.png" alt="Prompt"/>
       <br/>
-      <em>Starship prompt with git branch and language context</em>
+      <em>Fancy prompt with git branch and language context</em>
     </td>
     <td align="center" width="50%">
       <img src="screenshots/lvim.png" alt="Editor"/>
@@ -31,7 +31,7 @@ Welcome to my personal macOS development environment!
     <td align="center" width="50%">
       <img src="screenshots/autosuggestions.png" alt="Autosuggestions (fzf-tab)"/>
       <br/>
-      <em>fzf-tab providing fuzzy autosuggestions during tab completion</em>
+      <em>Downdown menu autosuggestions during tab completion</em>
     </td>
     <td align="center" width="50%">
       <img src="screenshots/lazygit.png" alt="lazygit"/>
