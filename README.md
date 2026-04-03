@@ -8,23 +8,45 @@ Welcome to my personal macOS development environment!
 
 <!-- Replace these with actual screenshots — create a screenshots/ folder and drop in your images -->
 
-![Terminal](screenshots/terminal.png)
-*Ghostty terminal with Catppuccin Mocha theme, blur, and JetBrains Mono Nerd Font*
+<p align="center">
+  <img src="screenshots/terminal.png" alt="Terminal" width="800"/>
+  <br/>
+  <em>Ghostty terminal with Catppuccin Mocha theme, blur, and JetBrains Mono Nerd Font</em>
+</p>
 
-![Prompt](screenshots/prompt.png)
-*Starship prompt showing git branch, language versions, and directory context*
-
-![Editor](screenshots/lvim.png)
-*LunarVim with syntax highlighting and file explorer*
-
-![Autosuggestions (fzf-tab)](screenshots/autosuggestions.png)
-*fzf-tab providing fuzzy autosuggestions during tab completion*
-
-![lazygit](screenshots/lazygit.png)
-*lazygit terminal UI for managing commits, branches, and diffs*
-
-![btop](screenshots/btop.png)
-*btop resource monitor showing CPU, memory, network, and processes*
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/prompt.png" alt="Prompt" width="400"/>
+      <br/>
+      <em>Starship prompt with git branch and language context</em>
+    </td>
+    <td align="center">
+      <img src="screenshots/lvim.png" alt="Editor" width="400"/>
+      <br/>
+      <em>LunarVim with syntax highlighting and file explorer</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="screenshots/autosuggestions.png" alt="Autosuggestions (fzf-tab)" width="400"/>
+      <br/>
+      <em>fzf-tab providing fuzzy autosuggestions during tab completion</em>
+    </td>
+    <td align="center">
+      <img src="screenshots/lazygit.png" alt="lazygit" width="400"/>
+      <br/>
+      <em>lazygit terminal UI for commits, branches, and diffs</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <img src="screenshots/btop.png" alt="btop" width="600"/>
+      <br/>
+      <em>btop resource monitor showing CPU, memory, network, and processes</em>
+    </td>
+  </tr>
+</table>
 
 ---
 
