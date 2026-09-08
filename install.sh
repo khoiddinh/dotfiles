@@ -9,16 +9,21 @@ ENABLE_GIT=0
 GIT_NAME=""
 GIT_EMAIL=""
 
+# GPG commit signing (optional; enabled by passing --gpg-key)
+GPG_KEY=""
+
 log() { printf "\n==> %s\n" "$1"; }
 
 usage() {
   cat <<'EOF'
-Usage: ./install.sh [--git --git-name "Name" --git-email "email@example.com"]
+Usage: ./install.sh [--git --git-name "Name" --git-email "email@example.com"] [--gpg-key KEYID]
 
 Options:
   --git                 Enable git setup (rewrites git/gitconfig, links ~/.gitconfig)
   --git-name "NAME"     Git user.name (required with --git)
   --git-email "EMAIL"   Git user.email (required with --git)
+  --gpg-key "KEYID"     Enable GPG commit signing with this key (requires --git).
+                        List your keys: gpg --list-secret-keys --keyid-format=long
   -h, --help            Show help
 EOF
 }
@@ -30,6 +35,7 @@ parse_args() {
       --git) ENABLE_GIT=1; shift ;;
       --git-name) GIT_NAME="${2:-}"; shift 2 ;;
       --git-email) GIT_EMAIL="${2:-}"; shift 2 ;;
+      --gpg-key) GPG_KEY="${2:-}"; shift 2 ;;
       -h|--help) usage; exit 0 ;;
       *) echo "Unknown arg: $1" >&2; usage >&2; exit 2 ;;
     esac
@@ -38,6 +44,12 @@ parse_args() {
   # If git enabled, require identity.
   if [ "$ENABLE_GIT" -eq 1 ] && { [ -z "$GIT_NAME" ] || [ -z "$GIT_EMAIL" ]; }; then
     echo "Error: --git requires --git-name and --git-email" >&2
+    exit 2
+  fi
+
+  # Signing config is written into the generated gitconfig.
+  if [ -n "$GPG_KEY" ] && [ "$ENABLE_GIT" -eq 0 ]; then
+    echo "Error: --gpg-key requires --git (signing is written into the generated git config)" >&2
     exit 2
   fi
 }
@@ -117,6 +129,80 @@ render_gitconfig() {
   # Validate before touching ~/.gitconfig
   if ! git config --file "$out" --list >/dev/null 2>&1; then
     echo "Generated git config is invalid." >&2
+    exit 1
+  fi
+}
+
+# Install gpg + a macOS pinentry, and point gpg-agent at it.
+# Also fixes the classic "Inappropriate ioctl for device" signing failure,
+# which happens when gpg has no terminal to show its passphrase prompt on.
+setup_gpg() {
+  log "Setting up GPG"
+
+  command -v gpg >/dev/null 2>&1 || brew install gnupg
+  [ -x "$(brew --prefix)/bin/pinentry-mac" ] || brew install pinentry-mac
+
+  mkdir -p "$HOME/.gnupg"
+  chmod 700 "$HOME/.gnupg"
+
+  local agent_conf="$HOME/.gnupg/gpg-agent.conf"
+  local pinentry="$(brew --prefix)/bin/pinentry-mac"
+
+  touch "$agent_conf"
+  if grep -q "^pinentry-program" "$agent_conf"; then
+    perl -pi -e "s|^pinentry-program.*|pinentry-program $pinentry|" "$agent_conf"
+  else
+    printf "pinentry-program %s\n" "$pinentry" >> "$agent_conf"
+  fi
+  chmod 600 "$agent_conf"
+
+  gpgconf --kill gpg-agent >/dev/null 2>&1 || true
+}
+
+# Verify the requested signing key actually exists in the keyring.
+verify_gpg_key() {
+  if gpg --list-secret-keys "$GPG_KEY" >/dev/null 2>&1; then
+    return 0
+  fi
+
+  cat >&2 <<EOF
+
+No secret key matching "$GPG_KEY" found in your keyring.
+
+List your keys with:
+
+  gpg --list-secret-keys --keyid-format=long
+
+Or create one with:
+
+  gpg --full-generate-key
+
+EOF
+  exit 1
+}
+
+# Append signing settings to the generated gitconfig.
+append_gpg_gitconfig() {
+  local out="$DOTFILES_DIR/git/gitconfig"
+
+  log "Enabling commit signing with key $GPG_KEY"
+  cat >> "$out" <<EOF
+
+[user]
+  signingkey = $GPG_KEY
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true
+
+[gpg]
+  program = $(command -v gpg)
+EOF
+
+  if ! git config --file "$out" --list >/dev/null 2>&1; then
+    echo "Generated git config is invalid after adding GPG settings." >&2
     exit 1
   fi
 }
@@ -217,6 +303,14 @@ main() {
   # Optional Git setup
   if [ "$ENABLE_GIT" -eq 1 ]; then
     render_gitconfig
+
+    # Optional GPG commit signing (appends to the freshly rendered config)
+    if [ -n "$GPG_KEY" ]; then
+      setup_gpg
+      verify_gpg_key
+      append_gpg_gitconfig
+    fi
+
     log "Linking git"
     link "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
   fi

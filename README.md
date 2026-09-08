@@ -131,6 +131,11 @@ Sets up rebase-by-default pulls, clearer merge conflicts, and common aliases (st
 - Curated aliases for status, logs, and commit helpers
 - macOS keychain credential storage
 
+### GPG Commit Signing (opt-in)
+Signs your commits and tags so GitHub shows them as **Verified**, with a macOS passphrase prompt instead of a broken terminal prompt.
+- Installs `gnupg` + `pinentry-mac` and wires up `gpg-agent`
+- Sets `GPG_TTY` in the shell, which fixes the common `gpg: signing failed: Inappropriate ioctl for device` error
+
 ---
 
 ## Setup
@@ -175,6 +180,110 @@ This will:
 Re-running with different name/email will update your identity.
 
 If `--git` is not passed, your existing `~/.gitconfig` is untouched.
+
+---
+
+## Optional: GPG Commit Signing
+
+Commit signing is opt-in and layers on top of `--git`. Every commit and tag you make gets signed with your GPG key, and GitHub marks them **Verified**.
+
+You pass the key explicitly — the installer never picks a key for you and never creates one. That keeps re-runs predictable on machines with more than one key.
+
+### 1. Get a key
+
+If you already have one, list it:
+
+```
+gpg --list-secret-keys --keyid-format=long
+```
+
+```
+sec   ed25519/ABCD1234EF567890 2026-09-02 [SC]
+      B17A5BFCBEC380C201A6A252648A68FDFCEB6DC8
+uid                 [ultimate] Your Name <you@example.com>
+```
+
+The key ID is the part after the slash on the `sec` line — `ABCD1234EF567890` above.
+
+If you don't have a key, create one (choose the defaults; you'll be asked for a name, email, and passphrase):
+
+```
+gpg --full-generate-key
+```
+
+> **The key's email must match the email you pass to `--git-email`.** GitHub only shows a commit as Verified when the commit author email matches an email on the signing key *and* on your GitHub account.
+
+### 2. Run the installer
+
+```
+./install.sh --git --git-name "Your Name" --git-email "you@example.com" --gpg-key ABCD1234EF567890
+```
+
+This will:
+
+- Install `gnupg` and `pinentry-mac` (a native macOS passphrase prompt instead of a terminal one)
+- Point `gpg-agent` at `pinentry-mac` via `~/.gnupg/gpg-agent.conf`, then restart the agent
+- Add `user.signingkey`, `commit.gpgsign`, `tag.gpgsign`, and `gpg.program` to the generated git config
+
+If the key isn't in your keyring, the installer stops before touching your git config. Passing `--gpg-key` without `--git` is also an error, since the signing settings are written into the generated config.
+
+### 3. Add the public key to GitHub
+
+Export it:
+
+```
+gpg --armor --export ABCD1234EF567890
+```
+
+Copy the whole block, including the `-----BEGIN PGP PUBLIC KEY BLOCK-----` and `-----END-----` lines, and paste it into GitHub under **Settings → SSH and GPG keys → New GPG key**.
+
+### 4. Verify it works
+
+Open a new terminal first, so the updated `zshrc` is loaded, then:
+
+```
+git config --get commit.gpgsign
+git commit --allow-empty -m "test signing"
+git log --show-signature -1
+```
+
+You should be prompted for your passphrase in a macOS dialog, and the log should show `Good signature from "Your Name <you@example.com>"`. Clean up the test commit with:
+
+```
+git reset --hard HEAD~1
+```
+
+### Fixing `gpg: signing failed: Inappropriate ioctl for device`
+
+This happens when GPG has no terminal to draw its passphrase prompt on. The fix for the current session:
+
+```
+export GPG_TTY=$(tty)
+```
+
+`zsh/zshrc` already exports `GPG_TTY` on every shell start (when `gpg` is installed), so once these dotfiles are linked the fix is permanent — you don't need to add it yourself. You do need a **new** shell for it to take effect, since the export runs at shell startup.
+
+If it still fails, restart the agent:
+
+```
+gpgconf --kill gpg-agent
+```
+
+### Turning signing off
+
+Re-run `install.sh` with `--git` but without `--gpg-key` — the config is regenerated from the template each time, so the signing block disappears.
+
+For a one-off unsigned commit:
+
+```
+git commit --no-gpg-sign
+```
+
+### Notes
+
+- `git/gitconfig` is generated and gitignored; only `git/gitconfig.template` is committed, so your key ID never ends up in the repo.
+- Re-running the installer is safe. `~/.gnupg/gpg-agent.conf` is updated in place rather than accumulating duplicate `pinentry-program` lines.
+- Signing is global once linked, so it applies to every repo on the machine.
 
 ---
 
@@ -283,6 +392,8 @@ If you're using the git config, re-run with your flags:
 ```
 ./install.sh --git --git-name "Your Name" --git-email "you@example.com"
 ```
+
+Add `--gpg-key YOUR_KEY_ID` to that command if you're using commit signing.
 
 ---
 
