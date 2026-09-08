@@ -134,7 +134,7 @@ Sets up rebase-by-default pulls, clearer merge conflicts, and common aliases (st
 ### GPG Commit Signing (optional)
 Signs your commits and tags so GitHub shows them as **Verified**, with a macOS passphrase prompt instead of a broken terminal prompt.
 - Installs `gnupg` + `pinentry-mac` and wires up `gpg-agent`
-- Sets `GPG_TTY` in the shell, which fixes the common `gpg: signing failed: Inappropriate ioctl for device` error
+- Sets up `GPG_TTY` in the shell
 
 ---
 
