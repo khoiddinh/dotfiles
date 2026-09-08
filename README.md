@@ -125,13 +125,13 @@ pyenv uninstall 3.10.4
 ### CLI Tools
 - fzf, lazygit, btop, fastfetch
 
-### Git (opt-in)
+### Git (optional)
 Sets up rebase-by-default pulls, clearer merge conflicts, and common aliases (status, branch, checkout, log graphs, amend, undo) so you don't have to configure them yourself every time.
 - Rebase-based pull, auto-stash, zdiff3 conflict style
 - Curated aliases for status, logs, and commit helpers
 - macOS keychain credential storage
 
-### GPG Commit Signing (opt-in)
+### GPG Commit Signing (optional)
 Signs your commits and tags so GitHub shows them as **Verified**, with a macOS passphrase prompt instead of a broken terminal prompt.
 - Installs `gnupg` + `pinentry-mac` and wires up `gpg-agent`
 - Sets `GPG_TTY` in the shell, which fixes the common `gpg: signing failed: Inappropriate ioctl for device` error
@@ -188,6 +188,9 @@ If `--git` is not passed, your existing `~/.gitconfig` is untouched.
 Commit signing is opt-in and layers on top of `--git`. Every commit and tag you make gets signed with your GPG key, and GitHub marks them **Verified**.
 
 You pass the key explicitly — the installer never picks a key for you and never creates one. That keeps re-runs predictable on machines with more than one key.
+
+<details>
+<summary><strong>GPG Setup Guide</strong></summary>
 
 ### 1. Get a key
 
@@ -284,6 +287,8 @@ git commit --no-gpg-sign
 - `git/gitconfig` is generated and gitignored; only `git/gitconfig.template` is committed, so your key ID never ends up in the repo.
 - Re-running the installer is safe. `~/.gnupg/gpg-agent.conf` is updated in place rather than accumulating duplicate `pinentry-program` lines.
 - Signing is global once linked, so it applies to every repo on the machine.
+
+</details>
 
 ---
 
