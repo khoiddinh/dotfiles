@@ -187,8 +187,6 @@ If `--git` is not passed, your existing `~/.gitconfig` is untouched.
 
 Commit signing is opt-in and layers on top of `--git`. Every commit and tag you make gets signed with your GPG key, and GitHub marks them **Verified**.
 
-You pass the key explicitly — the installer never picks a key for you and never creates one. That keeps re-runs predictable on machines with more than one key.
-
 <details>
 <summary><strong>GPG Setup Guide</strong></summary>
 
